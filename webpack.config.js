@@ -1,6 +1,8 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+// import postcssPresetEnv from 'postcss-preset-env';
+
 
 module.exports = {
   entry: './src/js/main.js',
@@ -35,16 +37,6 @@ module.exports = {
               importLoaders: 1,
               sourceMap: true
             },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              sourceMap: true,
-              plugins: [
-                require('postcss-cssnext')()
-              ]
-            }
           },
           {
             loader: "sass-loader",
