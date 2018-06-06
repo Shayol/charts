@@ -99,4 +99,4 @@ arc.append("text")
     .attr("transform", function (d) {
         return "translate(" + label.centroid(d) + ")";
     })
-    .text(function (d) { return d.percent; });
+    .text(function (d, i) { return d.data.percent + "%"; });
