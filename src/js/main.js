@@ -10,7 +10,7 @@ var data = [{ name: "Baden-Württemberg", number: 414 },
 { name: "Mecklenburg-Vorpommern", number: 755 }];
 
 
-
+// bar chart
 var width = 500,
     barHeight = 20;
 
@@ -51,3 +51,52 @@ bar.append("text")
     .attr("y", barHeight / 2)
     .attr("dy", ".35em")
     .text(function (d) { return d.number; });
+
+
+// pie chart
+
+var pieData = [{name: "Septale Defekte/vaskuläre Fehlverbindungen", percent: 49.5},
+              {name: "Ursprungsanomalie der großen Arterien", percent: 8.8},
+              {name: "Linksobstruktionen", percent: 16.5},
+             {name: "Rechtsobstruktionen", percent: 17.3},
+            {name: "sonstige", percent: 8.2}]
+
+var svg = d3.select(".pie-chart"),
+    width = svg.attr("width"),
+    height = svg.attr("height"),
+    radius = Math.min(width, height) / 2;
+
+var g = svg.append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+var color = d3.scaleOrdinal(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3', '#e41a1c']);
+
+var pie = d3.pie().value(function (d) {
+    return d.percent;
+});
+
+var path = d3.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
+
+var label = d3.arc()
+    .outerRadius(radius)
+    .innerRadius(radius - 80);
+
+
+var arc = g.selectAll(".arc")
+    .data(pie(pieData))
+    .enter().append("g")
+    .attr("class", "arc");
+
+arc.append("path")
+    .attr("d", path)
+    .attr("fill", function (d, i) { return color(i); });
+
+console.log(arc)
+
+arc.append("text")
+    .attr("transform", function (d) {
+        return "translate(" + label.centroid(d) + ")";
+    })
+    .text(function (d) { return d.percent; });
