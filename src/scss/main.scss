@@ -30,3 +30,13 @@
 .arc path {
     stroke: #fff;
 }
+
+.line-chart .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+  }
+
+.line-chart text {
+    fill: black;
+}
