@@ -120,7 +120,7 @@ var lineData = [{date: "2004", number: 0.002},
 {date: "2017", number: 2.000},
 {date: "2018", number: 2.215}];
 
-var margin = { top: 30, left: 30};
+var margin = { top: 30, left: 50};
 var lineChart = d3.select(".line-chart"),
     width = lineChart.attr("width") - margin.left * 2,
     height = lineChart.attr("height") - margin.top * 2;
